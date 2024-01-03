@@ -13,6 +13,12 @@ If you're using linux you probably don't need this repo but if you request it I 
 
 Move the .exe file in the Lethal Company folder (e.g `C:\\Program Files\Steam\steamapps\common\Lethal Company\`) at the same level as the lethal compny .exe file or the BepInEx folder
 
+It should now run the Lethal Company.exe automatically after finishing the sync.
+
+# HOW TO REPLACE LETHAL COMPANY EXE BYTHIS
+
+Go on steam, Launch options and write the full path to the file (e.g `C:\\Program Files\Steam\steamapps\common\Lethal Company\`)
+
 ## YOU SHOULD HAVE BEPINEX INSTALLED AND SETUP BEFORE USING THIS
 
 Double click on the .exe file, wait for the download and copy.

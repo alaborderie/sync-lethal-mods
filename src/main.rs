@@ -1,4 +1,5 @@
 use std::io::Write;
+use std::process::{self, exit, Command};
 use std::{fs, io};
 
 use git2::build::{CheckoutBuilder, RepoBuilder};
@@ -145,6 +146,8 @@ async fn main() -> io::Result<()> {
         .map(|res| res.map(|file| file.path()))
         .collect::<Result<Vec<_>, io::Error>>()?;
 
+    fs::create_dir_all(CONFIG_PATH).unwrap_or_default();
+
     for config_file in config_files {
         println!(
             "Copying {:?} to {:?}",
@@ -165,7 +168,7 @@ async fn main() -> io::Result<()> {
         )?;
     }
 
-    fs::remove_dir_all(PLUGIN_PATH)?;
+    fs::remove_dir_all(PLUGIN_PATH).unwrap_or_default();
     fs::create_dir_all(PLUGIN_PATH)?;
 
     for plugin_file in plugin_files {
@@ -206,5 +209,14 @@ async fn main() -> io::Result<()> {
 
     fs::write(LAST_COMMIT_LOG, &commits.first().unwrap().sha)?;
 
-    std::process::exit(0);
+    if cfg!(target_os = "windows") {
+        // Start the game
+        let _ = Command::new("Lethal Company.exe")
+            .stdin(process::Stdio::null())
+            .stdout(process::Stdio::null())
+            .stderr(process::Stdio::null())
+            .spawn();
+    };
+
+    exit(0)
 }
