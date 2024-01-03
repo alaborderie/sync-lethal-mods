@@ -26,7 +26,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: target/x86_64-pc-windows-gnu/sync-lethal-mods.exe
+          file: target/x86_64-pc-windows-gnu/release/sync-lethal-mods.exe
           asset_name: sync-lethal-mods.exe
           tag: ${{ github.ref }}
           overwrite: true
